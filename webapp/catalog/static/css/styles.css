@@ -96,7 +96,11 @@ body{
 .product__attributes>button{
     background-color: inherit;
     border: none;
-    color: var(--tg-theme-button-text-color);
+    color: var(--link_color);
     font-size: 22px;
     cursor: pointer;
+}
+
+.product__text{
+    padding: 10px;
 }

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5j_9@1z%+u=j^rrq&sz=q*c^^6(uzc$u(kc8_4@4mr8j=4xxi4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['emotiondealers.ru', 'www.emotiondealers.ru', 'localhost']
 
 
 # Application definition
@@ -118,7 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'main/static'
+STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 MEDIA_URL = 'webapp/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
