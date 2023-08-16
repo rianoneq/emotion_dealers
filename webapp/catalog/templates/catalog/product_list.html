@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="cards">
+        {% for item in items %}
+        <a class="card" href="{{ item.get_absolute_url }}">
+            <img class="card__image" src="{{ MEDIA_URL }}{{ item.get_preview }}" alt="">
+            <div class="card__text">
+                <span class="card__price">{{ item.price }} ₽</span>
+                <div class="card__name">
+                    <span>{{ item.mark }}</span>
+                    <span>{{ item.model }}</span>
+                </div>
+            </div>
+            <div class="card__btn">
+                <button>Купить</button>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}
