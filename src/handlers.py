@@ -1,5 +1,3 @@
-from src.keyboards import keyboard
-
 from aiogram.filters import Command
 from aiogram import types
 from aiogram import Router
@@ -11,8 +9,7 @@ bot = Bot(token='6477814839:AAH-oy1vB9toWF2r7CmvVdUV3yjxkUERigQ')
 
 @route.message(Command(commands=['start']))
 async def start(message: types.Message):
-    await message.answer('Тестируем WebApp!',
-                           reply_markup=keyboard)
+    await message.answer('Тестируем WebApp!')
 
 PRICE = {
     '1': [types.LabeledPrice(label='Item1', amount=100000)],

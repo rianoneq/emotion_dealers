@@ -64,6 +64,7 @@ body {
     row-gap: 10px;
     column-gap: 10px;
     display: grid;
+    background-color: var(--tg-theme-bg-color);
     grid-template-columns: 1fr 1fr;
     /* grid-template-rows: 250px 250px 250px; */
 }
@@ -104,12 +105,9 @@ body {
 }
 
 .card {
-    cursor: pointer;
-}
-
-.card {
     text-decoration: none;
-    color: var(--tg-theme-text-color);
+    color: var(--tg-theme-text-color) !important;
+    background-color: var(--tg-theme-secondary-bg-color);
 }
 
 .swiper {

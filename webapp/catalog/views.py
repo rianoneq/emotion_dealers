@@ -4,6 +4,21 @@ from django.conf import settings
 
 from .models import Product
 from .models import PostProductImage
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+
+def detail_view(request, pk: int):
+    # if request.is_ajax():
+    product = Product.objects.filter(id=pk)
+
+    images = PostProductImage.objects.filter(product=pk)
+    if len(product) < 1:
+        return HttpResponse(status=404)
+    html = render_to_string('catalog/product_detail.html', {'product': product[0], 'images': images, 'MEDIA_URL': settings.MEDIA_URL})
+    res = HttpResponse(html)
+    res.__setitem__("Content-type", "html")
+    res.__setitem__("Access-Control-Allow-Origin", "*")
+    return res
 
 class ItemDetailView(generic.DetailView):
     model = Product

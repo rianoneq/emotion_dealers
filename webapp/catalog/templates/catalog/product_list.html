@@ -1,20 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="cards">
-        {% for item in items %}
-        <a class="card" href="{{ item.get_absolute_url }}">
-            <img class="card__image" src="{{ MEDIA_URL }}{{ item.get_preview }}" alt="">
-            <div class="card__text">
-                <span class="card__price">{{ item.price }} ₽</span>
-                <div class="card__name">
-                    <span>{{ item.mark }}</span>
-                    <span>{{ item.model }}</span>
+    
+    <div id="root__">
+        <div class="cards">
+            {% for item in items %}
+            <!-- href="{{ item.get_absolute_url }}" -->
+            <div class="card" data-id="{{ item.id }}">
+                <img class="card__image" src="{{ MEDIA_URL }}{{ item.get_preview }}" alt="">
+                <div class="card__text">
+                    <span class="card__price">{{ item.price }} ₽</span>
+                    <div class="card__name">
+                        <span>{{ item.mark }}</span>
+                        <span>{{ item.model }}</span>
+                    </div>
+                </div>
+                <div class="card__btn">
+                    <button>Купить</button>
                 </div>
             </div>
-            <div class="card__btn">
-                <button>Купить</button>
-            </div>
-        </a>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
+    <script>
+        // Telegram.WebApp.expand();
+
+        let cards = document.querySelectorAll('.card');
+        
+        function ajaxCall(id) {
+            $.ajax({
+                url: `/catalog/item/${id}/`,
+                type: 'GET',
+                dataType: 'html',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                success: function (data) {
+                    console.log($('#root__'))
+                    $('#root__').replaceWith($('#root__').html(data));
+                },
+
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        }
+
+        cards.forEach(card => {
+            card.addEventListener('click', e => {
+                const id = e.target.closest('.card').dataset.id;
+                ajaxCall(id);
+                // Telegram.WebApp.openLink('https://emotiondealers.ru/catalog/item/3');
+                // tg.openLink('https://telegram.org/fag') = ;
+            });
+        });
+    </script>
 {% endblock %}
